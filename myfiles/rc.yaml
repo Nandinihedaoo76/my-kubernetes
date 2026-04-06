@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: my-rc
+  labels: 
+    app: cbz-app  
+spec:
+  replicas: 3
+  template:
+    metadata: 
+      labels:
+        app: cbz-app
+    spec:
+      containers:
+        - name: my-c
+          image: httpd
+          ports:
+            - containerPort: 80
+  selector:
+    app: cbz-app    
+

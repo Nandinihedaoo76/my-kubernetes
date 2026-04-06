@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: my-daemon
+  labels:
+    app: daemon-app
+spec:
+  selector:
+    matchLabels:  
+      app: daemon-app
+    matchExpressions:
+      - {key: app, operator: In, values: [cbz-app, daemon-app]}
+  template:
+    metadata: 
+      labels:
+        app: daemon-app
+    spec:
+      containers:
+        - name: my-c
+          image: httpd
+          ports:
+            - containerPort: 80
